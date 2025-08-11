@@ -3,7 +3,7 @@ package com.ahmetmert.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.ahmetmert.entities.Room;
+import com.ahmetmert.entity.Room;
 
 @Repository
 public interface RoomRepository extends JpaRepository<Room, Long> {

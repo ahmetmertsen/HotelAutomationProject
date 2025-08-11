@@ -1,4 +1,4 @@
-package com.ahmetmert.entities;
+package com.ahmetmert.entity;
 
 import java.util.List;
 

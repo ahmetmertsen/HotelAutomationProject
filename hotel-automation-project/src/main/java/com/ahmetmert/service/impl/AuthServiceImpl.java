@@ -1,4 +1,4 @@
-package com.ahmetmert.services.impl;
+package com.ahmetmert.service.impl;
 
 import java.net.Authenticator.RequestorType;
 import java.util.Date;
@@ -13,14 +13,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.ahmetmert.dto.DtoUser;
+import com.ahmetmert.entity.RefreshToken;
+import com.ahmetmert.entity.User;
 import com.ahmetmert.jwt.AuthRequest;
 import com.ahmetmert.jwt.AuthResponse;
 import com.ahmetmert.jwt.JwtService;
-import com.ahmetmert.entities.RefreshToken;
-import com.ahmetmert.entities.User;
 import com.ahmetmert.repository.RefreshTokenRepository;
 import com.ahmetmert.repository.UserRepository;
-import com.ahmetmert.services.IAuthService;
+import com.ahmetmert.service.IAuthService;
 
 
 @Service

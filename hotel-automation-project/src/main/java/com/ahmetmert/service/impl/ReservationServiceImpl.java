@@ -1,4 +1,4 @@
-package com.ahmetmert.services.impl;
+package com.ahmetmert.service.impl;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -13,13 +13,13 @@ import com.ahmetmert.dto.DtoCustomer;
 import com.ahmetmert.dto.DtoReservation;
 import com.ahmetmert.dto.DtoReservationIU;
 import com.ahmetmert.dto.DtoRoom;
-import com.ahmetmert.entities.Customer;
-import com.ahmetmert.entities.Reservation;
-import com.ahmetmert.entities.Room;
+import com.ahmetmert.entity.Customer;
+import com.ahmetmert.entity.Reservation;
+import com.ahmetmert.entity.Room;
 import com.ahmetmert.repository.CustomerRepository;
 import com.ahmetmert.repository.ReservationRepository;
 import com.ahmetmert.repository.RoomRepository;
-import com.ahmetmert.services.IReservationService;
+import com.ahmetmert.service.IReservationService;
 
 
 @Service

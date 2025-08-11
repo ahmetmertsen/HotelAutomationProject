@@ -2,7 +2,7 @@ package com.ahmetmert.dto;
 
 import java.time.LocalDateTime;
 
-import com.ahmetmert.entities.ReservationStatus;
+import com.ahmetmert.entity.ReservationStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;

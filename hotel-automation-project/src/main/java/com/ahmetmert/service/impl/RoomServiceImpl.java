@@ -1,4 +1,4 @@
-package com.ahmetmert.services.impl;
+package com.ahmetmert.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 
 import com.ahmetmert.dto.DtoRoom;
 import com.ahmetmert.dto.DtoRoomIU;
-import com.ahmetmert.entities.Room;
+import com.ahmetmert.entity.Room;
 import com.ahmetmert.repository.RoomRepository;
-import com.ahmetmert.services.IRoomService;
+import com.ahmetmert.service.IRoomService;
 
 @Service
 public class RoomServiceImpl implements IRoomService {

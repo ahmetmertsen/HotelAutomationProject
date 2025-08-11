@@ -10,8 +10,8 @@ import com.ahmetmert.dto.DtoUser;
 import com.ahmetmert.jwt.AuthRequest;
 import com.ahmetmert.jwt.AuthResponse;
 import com.ahmetmert.jwt.RefreshTokenRequest;
-import com.ahmetmert.services.IAuthService;
-import com.ahmetmert.services.IRefreshTokenService;
+import com.ahmetmert.service.IAuthService;
+import com.ahmetmert.service.IRefreshTokenService;
 
 import jakarta.validation.Valid;
 

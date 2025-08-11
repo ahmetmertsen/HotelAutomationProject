@@ -1,4 +1,4 @@
-package com.ahmetmert.services;
+package com.ahmetmert.service;
 
 import com.ahmetmert.jwt.AuthResponse;
 import com.ahmetmert.jwt.RefreshTokenRequest;

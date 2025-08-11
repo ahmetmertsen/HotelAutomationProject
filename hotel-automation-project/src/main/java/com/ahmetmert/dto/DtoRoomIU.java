@@ -1,6 +1,6 @@
 package com.ahmetmert.dto;
 
-import com.ahmetmert.entities.RoomType;
+import com.ahmetmert.entity.RoomType;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;

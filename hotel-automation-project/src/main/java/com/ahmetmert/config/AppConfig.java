@@ -14,7 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.ahmetmert.entities.User;
+import com.ahmetmert.entity.User;
 import com.ahmetmert.repository.UserRepository;
 
 @Configuration

@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.ahmetmert.dto.DtoCustomer;
 import com.ahmetmert.dto.DtoCustomerIU;
-import com.ahmetmert.entities.Customer;
+import com.ahmetmert.entity.Customer;
 
 public interface IRestCustomerController {
 	

@@ -6,7 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.ahmetmert.entities.RefreshToken;
+import com.ahmetmert.entity.RefreshToken;
+
 import java.util.List;
 
 

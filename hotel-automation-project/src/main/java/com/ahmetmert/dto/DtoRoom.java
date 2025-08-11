@@ -1,6 +1,6 @@
 package com.ahmetmert.dto;
 
-import com.ahmetmert.entities.RoomType;
+import com.ahmetmert.entity.RoomType;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

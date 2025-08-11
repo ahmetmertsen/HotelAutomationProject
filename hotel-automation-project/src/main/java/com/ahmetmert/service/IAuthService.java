@@ -1,4 +1,4 @@
-package com.ahmetmert.services;
+package com.ahmetmert.service;
 
 import com.ahmetmert.dto.DtoUser;
 import com.ahmetmert.jwt.AuthRequest;

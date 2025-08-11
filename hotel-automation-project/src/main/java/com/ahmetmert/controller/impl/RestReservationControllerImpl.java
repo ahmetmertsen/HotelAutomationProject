@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ahmetmert.controller.IRestReservationController;
 import com.ahmetmert.dto.DtoReservation;
 import com.ahmetmert.dto.DtoReservationIU;
-import com.ahmetmert.services.IReservationService;
+import com.ahmetmert.service.IReservationService;
 
 @RestController
 @RequestMapping("/reservation")

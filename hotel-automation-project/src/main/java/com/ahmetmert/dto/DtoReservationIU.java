@@ -1,7 +1,7 @@
 package com.ahmetmert.dto;
 import java.time.LocalDateTime;
 
-import com.ahmetmert.entities.*;
+import com.ahmetmert.entity.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.validation.constraints.Future;

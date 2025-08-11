@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ahmetmert.controller.IRestCustomerController;
 import com.ahmetmert.dto.DtoCustomer;
 import com.ahmetmert.dto.DtoCustomerIU;
-import com.ahmetmert.entities.*;
-import com.ahmetmert.services.ICustomerService;
+import com.ahmetmert.entity.*;
+import com.ahmetmert.service.ICustomerService;
 
 @RestController
 @RequestMapping("/customer")

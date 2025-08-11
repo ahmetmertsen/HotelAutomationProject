@@ -1,4 +1,4 @@
-package com.ahmetmert.services.impl;
+package com.ahmetmert.service.impl;
 
 import java.util.Date;
 import java.util.Optional;
@@ -7,14 +7,14 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ahmetmert.entity.RefreshToken;
+import com.ahmetmert.entity.User;
 import com.ahmetmert.jwt.AuthResponse;
 import com.ahmetmert.jwt.JwtService;
 import com.ahmetmert.jwt.RefreshTokenRequest;
-import com.ahmetmert.entities.RefreshToken;
-import com.ahmetmert.entities.User;
 import com.ahmetmert.repository.RefreshTokenRepository;
-import com.ahmetmert.services.IAuthService;
-import com.ahmetmert.services.IRefreshTokenService;
+import com.ahmetmert.service.IAuthService;
+import com.ahmetmert.service.IRefreshTokenService;
 
 @Service
 public class RefreshTokenServiceImpl implements IRefreshTokenService {

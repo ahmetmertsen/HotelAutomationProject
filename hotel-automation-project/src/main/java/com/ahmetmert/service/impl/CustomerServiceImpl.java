@@ -1,4 +1,4 @@
-package com.ahmetmert.services.impl;
+package com.ahmetmert.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 
 import com.ahmetmert.dto.DtoCustomer;
 import com.ahmetmert.dto.DtoCustomerIU;
-import com.ahmetmert.entities.Customer;
+import com.ahmetmert.entity.Customer;
 import com.ahmetmert.repository.CustomerRepository;
-import com.ahmetmert.services.ICustomerService;
+import com.ahmetmert.service.ICustomerService;
 
 @Service
 public class CustomerServiceImpl implements ICustomerService {

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ahmetmert.controller.IRestRoomController;
 import com.ahmetmert.dto.DtoRoom;
 import com.ahmetmert.dto.DtoRoomIU;
-import com.ahmetmert.services.IRoomService;
+import com.ahmetmert.service.IRoomService;
 
 @RestController
 @RequestMapping("/room")
