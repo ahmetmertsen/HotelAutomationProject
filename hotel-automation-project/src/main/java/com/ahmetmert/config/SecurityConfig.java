@@ -23,6 +23,13 @@ public class SecurityConfig {
 	public static final String REGISTER = "/register";
 	public static final String REFRESH_TOKEN = "/refreshToken";
 	
+	public static final String[] SWAGGER_PATHS = {
+			"/swagger-ui/**",
+		    "/swagger-ui.html",
+		    "/v3/api-docs",
+		    "/v3/api-docs/**"
+	};
+	
 	@Autowired
 	private AuthenticationProvider authenticationProvider;
 	
@@ -36,8 +43,8 @@ public class SecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.csrf().disable()
 		.authorizeHttpRequests(request -> 
-		request.requestMatchers(AUTHENTICATE, REGISTER, REFRESH_TOKEN)
-		.permitAll()
+		request.requestMatchers(AUTHENTICATE, REGISTER, REFRESH_TOKEN).permitAll()
+		.requestMatchers(SWAGGER_PATHS).permitAll()
 		.anyRequest()
 		.authenticated())
 		.exceptionHandling().authenticationEntryPoint(authEntryPoint).and()

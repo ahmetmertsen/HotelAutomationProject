@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 import com.ahmetmert.dto.DtoRoom;
 import com.ahmetmert.dto.DtoRoomIU;
 import com.ahmetmert.entity.Room;
+import com.ahmetmert.exception.BaseException;
+import com.ahmetmert.exception.ErrorMessage;
+import com.ahmetmert.exception.MessageType;
 import com.ahmetmert.repository.RoomRepository;
 import com.ahmetmert.service.IRoomService;
 
@@ -25,6 +28,10 @@ public class RoomServiceImpl implements IRoomService {
 		List<DtoRoom> dtoList = new ArrayList<>();
 		   
 		List<Room> dbList = roomRepository.findAll();
+		if (dbList.isEmpty()) {
+		    throw new BaseException(
+		    		new ErrorMessage(MessageType.NO_RECORD_EXIST, null));
+		}
 		
 		for (Room room : dbList) {
 			DtoRoom dtoRoom = new DtoRoom(); 
@@ -39,7 +46,8 @@ public class RoomServiceImpl implements IRoomService {
     	DtoRoom dtoRoom = new DtoRoom();
         Optional<Room> optional = roomRepository.findById(id);
         if(optional.isEmpty()) {
-        	return null;
+        	throw new BaseException(
+        			new ErrorMessage(MessageType.NO_RECORD_EXIST, id.toString()));
         }
         Room room = optional.get();
         BeanUtils.copyProperties(room, dtoRoom);
@@ -55,19 +63,24 @@ public class RoomServiceImpl implements IRoomService {
         room.setCapacity(dtoRoomIU.getCapacity());
         room.setPrice(dtoRoomIU.getPrice());
         
-        Room dbRoom = roomRepository.save(room);
-        BeanUtils.copyProperties(dbRoom, responseRoom);
-        
-        return responseRoom;
+        try {
+        	Room dbRoom = roomRepository.save(room);
+            BeanUtils.copyProperties(dbRoom, responseRoom);
+            
+            return responseRoom;
+		} catch (Exception e) {
+			throw new BaseException(new ErrorMessage(MessageType.GENEREL_EXCEPTION, e.getMessage()));
+		}  
 	}
 
 	@Override
 	public void deleteRoom(Long id) {
 		Optional<Room> optional = roomRepository.findById(id);
-		if(optional.isPresent()) {
-			roomRepository.delete(optional.get());
+		if(optional.isEmpty()) {
+			throw new BaseException(
+					new ErrorMessage(MessageType.NO_RECORD_EXIST, id.toString()));
 		}
-		
+		roomRepository.delete(optional.get());
 	}
 
 }

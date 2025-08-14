@@ -16,6 +16,9 @@ import com.ahmetmert.dto.DtoRoom;
 import com.ahmetmert.entity.Customer;
 import com.ahmetmert.entity.Reservation;
 import com.ahmetmert.entity.Room;
+import com.ahmetmert.exception.BaseException;
+import com.ahmetmert.exception.ErrorMessage;
+import com.ahmetmert.exception.MessageType;
 import com.ahmetmert.repository.CustomerRepository;
 import com.ahmetmert.repository.ReservationRepository;
 import com.ahmetmert.repository.RoomRepository;
@@ -38,6 +41,10 @@ public class ReservationServiceImpl implements IReservationService {
     public List<DtoReservation> getAllReservations() {
         List<DtoReservation> dtoList = new ArrayList<>();
         List<Reservation> dbList = reservationRepository.findAll();
+        if (dbList.isEmpty()) {
+        	throw new BaseException(
+        			new ErrorMessage(MessageType.NO_RECORD_EXIST, null));
+        }
 
         for (Reservation reservation : dbList) {
             DtoReservation dto = new DtoReservation();
@@ -61,7 +68,8 @@ public class ReservationServiceImpl implements IReservationService {
     public DtoReservation getReservationById(Long id) {
         Optional<Reservation> optional = reservationRepository.findById(id);
         if (optional.isEmpty()) {
-            return null;
+        	throw new BaseException(
+        			new ErrorMessage(MessageType.NO_RECORD_EXIST, id.toString()));
         }
         Reservation reservation = optional.get();
 
@@ -83,15 +91,16 @@ public class ReservationServiceImpl implements IReservationService {
     public DtoReservation saveReservation(DtoReservationIU dtoReservationIU) {
 
         Customer customer = customerRepository.findById(dtoReservationIU.getCustomerId())
-                .orElseThrow(() -> new RuntimeException("Müşteri bulunamadı"));
+                .orElseThrow(() -> new BaseException(
+                        new ErrorMessage(MessageType.NO_RECORD_EXIST, dtoReservationIU.getCustomerId().toString())
+                ));
+
 
 
         Room room = roomRepository.findById(dtoReservationIU.getRoomId())
-                .orElseThrow(() -> new RuntimeException("Oda bulunamadı"));
-
-        if (room.isOccupied()) {
-            throw new RuntimeException("Oda zaten dolu!");
-        }
+                .orElseThrow(() -> new BaseException(
+                        new ErrorMessage(MessageType.NO_RECORD_EXIST, dtoReservationIU.getRoomId().toString())
+                ));
 
         Reservation reservation = new Reservation();
         reservation.setCustomer(customer);
@@ -126,15 +135,19 @@ public class ReservationServiceImpl implements IReservationService {
     @Override
     public void deleteReservation(Long id) {
         Optional<Reservation> optional = reservationRepository.findById(id);
-        if (optional.isPresent()) {
-            Reservation reservation = optional.get();
+        if(optional.isEmpty()) {
+			throw new BaseException(
+					new ErrorMessage(MessageType.NO_RECORD_EXIST, id.toString()));
+		}
+        
+        Reservation reservation = optional.get();
 
-            Room room = reservation.getRoom();
-            room.setOccupied(false);
-            roomRepository.save(room);
+        Room room = reservation.getRoom();
+        room.setOccupied(false);
+        roomRepository.save(room);
 
-            reservationRepository.delete(reservation);
-        }
+        reservationRepository.delete(reservation);
+        
     }
 }
 
