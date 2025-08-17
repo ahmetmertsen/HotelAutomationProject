@@ -12,39 +12,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ahmetmert.controller.IRestRoomController;
+import com.ahmetmert.controller.RestBaseController;
+import com.ahmetmert.controller.RestRootEntity;
 import com.ahmetmert.dto.DtoRoom;
 import com.ahmetmert.dto.DtoRoomIU;
 import com.ahmetmert.service.IRoomService;
 
 @RestController
 @RequestMapping("/room")
-public class RestRoomControllerImpl implements IRestRoomController {
+public class RestRoomControllerImpl extends RestBaseController implements IRestRoomController {
 
 	@Autowired
 	private IRoomService roomService;
 	
 	@GetMapping(path = "/list")
 	@Override
-	public List<DtoRoom> getAllRooms() {
-		return roomService.getAllRooms();
+	public RestRootEntity<List<DtoRoom>> getAllRooms() {
+		return ok(roomService.getAllRooms());  
 	}
 
 	@GetMapping(path = "/list/{id}")
 	@Override
-	public DtoRoom getRoomById(@PathVariable(name = "id") Long id) {
-		return roomService.getRoomById(id);
+	public RestRootEntity<DtoRoom> getRoomById(@PathVariable(name = "id") Long id) {
+		return ok(roomService.getRoomById(id)); 
 	}
 
 	@PostMapping(path = "/add")
 	@Override
-	public DtoRoom addRoom(@RequestBody DtoRoomIU dtoRoomIU) {
-		 return roomService.saveRoom(dtoRoomIU);
+	public RestRootEntity<DtoRoom> addRoom(@RequestBody DtoRoomIU dtoRoomIU) {
+		 return ok(roomService.saveRoom(dtoRoomIU));
 	}
 
 	@DeleteMapping(path = "/delete/{id}")
 	@Override
-	public void deleteRoom(@PathVariable(name = "id") Long id) {
+	public RestRootEntity<Void> deleteRoom(@PathVariable(name = "id") Long id) {
 		roomService.deleteRoom(id);
+		return ok(null);
 		
 	}
 

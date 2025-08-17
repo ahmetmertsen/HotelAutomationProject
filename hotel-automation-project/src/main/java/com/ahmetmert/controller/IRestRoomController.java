@@ -7,15 +7,15 @@ import com.ahmetmert.dto.DtoRoomIU;
 
 public interface IRestRoomController {
 	
-    public List<DtoRoom> getAllRooms();
+    public RestRootEntity<List<DtoRoom>> getAllRooms();
 
 
-    public DtoRoom getRoomById(Long id);
+    public RestRootEntity<DtoRoom> getRoomById(Long id);
 
 
-    public DtoRoom addRoom(DtoRoomIU dtoRoomIU);
+    public RestRootEntity<DtoRoom> addRoom(DtoRoomIU dtoRoomIU);
 
 
-    public void deleteRoom(Long id);
+    public RestRootEntity<Void> deleteRoom(Long id);
 
 }

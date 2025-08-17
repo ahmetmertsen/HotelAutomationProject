@@ -7,12 +7,12 @@ import com.ahmetmert.dto.DtoReservationIU;
 
 public interface IRestReservationController {
 
-	public List<DtoReservation> getAllReservations();
+	public RestRootEntity<List<DtoReservation>> getAllReservations();
 	
-	public DtoReservation getReservationById(Long id);
+	public RestRootEntity<DtoReservation> getReservationById(Long id);
 	
-	public DtoReservation addReservation(DtoReservationIU dtoReservationIU);
+	public RestRootEntity<DtoReservation> addReservation(DtoReservationIU dtoReservationIU);
 	
-	public void deleteReservation(Long id);
+	public RestRootEntity<Void> deleteReservation(Long id);
 	
 }

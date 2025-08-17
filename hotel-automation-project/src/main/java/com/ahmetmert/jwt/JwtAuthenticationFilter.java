@@ -12,6 +12,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import com.ahmetmert.exception.BaseException;
+import com.ahmetmert.exception.ErrorMessage;
+import com.ahmetmert.exception.MessageType;
+
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -59,10 +63,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 					SecurityContextHolder.getContext().setAuthentication(authentication);
 				}
 			}
-		} catch (ExpiredJwtException e) {
-			System.out.println("Token süresi dolmuştur : " + e.getMessage());
+		} catch (ExpiredJwtException ex) {
+			throw new BaseException(new ErrorMessage(MessageType.TOKEN_IS_EXPIRED, ex.getMessage()));
 		} catch(Exception e) {
-			System.out.println("Genel bir hata oluştu : " + e.getMessage());
+			throw new BaseException(new ErrorMessage(MessageType.GENEREL_EXCEPTION , e.getMessage()));
 		}
 		filterChain.doFilter(request, response);
 		

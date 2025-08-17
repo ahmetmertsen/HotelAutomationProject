@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ahmetmert.controller.IRestCustomerController;
+import com.ahmetmert.controller.RestBaseController;
+import com.ahmetmert.controller.RestRootEntity;
 import com.ahmetmert.dto.DtoCustomer;
 import com.ahmetmert.dto.DtoCustomerIU;
 import com.ahmetmert.entity.*;
@@ -19,34 +21,34 @@ import com.ahmetmert.service.ICustomerService;
 
 @RestController
 @RequestMapping("/customer")
-public class RestCustomerControllerImpl implements IRestCustomerController {
+public class RestCustomerControllerImpl extends RestBaseController implements IRestCustomerController {
 	
 	@Autowired
 	private ICustomerService customerService;
 
 	@GetMapping(path =  "/list")
 	@Override
-	public List<DtoCustomer> getAllCustomers() {
-		return customerService.getAllCustomers();
+	public RestRootEntity<List<DtoCustomer>> getAllCustomers() {
+		return ok(customerService.getAllCustomers());
 	}
 	
 	@GetMapping(path = "/list/{id}")
 	@Override
-	public DtoCustomer getCustomerById(@PathVariable(name = "id") Long id) {
-		return customerService.getCustomerById(id);
+	public RestRootEntity<DtoCustomer> getCustomerById(@PathVariable(name = "id") Long id) {
+		return ok(customerService.getCustomerById(id));
 	}
 
 	@PostMapping(path = "/add")
 	@Override
-	public DtoCustomer addCustomer(@RequestBody DtoCustomerIU dtoCustomerIU) {
-	    return customerService.saveCustomer(dtoCustomerIU);
+	public RestRootEntity<DtoCustomer> addCustomer(@RequestBody DtoCustomerIU dtoCustomerIU) {
+	    return ok(customerService.saveCustomer(dtoCustomerIU));
 	}
 
 	@DeleteMapping(path = "/delete/{id}")
 	@Override
-	public void deleteCustomer(@PathVariable(name = "id") Long id) {
-		customerService.deleteCustomer(id);
-		
+	public RestRootEntity<Void> deleteCustomer(@PathVariable(name = "id") Long id) {
+	    customerService.deleteCustomer(id);
+	    return ok(null);
 	}
 
 	

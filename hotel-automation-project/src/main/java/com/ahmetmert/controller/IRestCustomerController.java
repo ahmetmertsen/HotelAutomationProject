@@ -4,18 +4,19 @@ import java.util.List;
 
 import com.ahmetmert.dto.DtoCustomer;
 import com.ahmetmert.dto.DtoCustomerIU;
+import com.ahmetmert.dto.DtoUser;
 import com.ahmetmert.entity.Customer;
 
 public interface IRestCustomerController {
 	
-    public List<DtoCustomer> getAllCustomers();
+    public RestRootEntity<List<DtoCustomer>> getAllCustomers();
 
 
-    public DtoCustomer getCustomerById(Long id);
+    public RestRootEntity<DtoCustomer> getCustomerById(Long id);
 
 
-    public DtoCustomer addCustomer(DtoCustomerIU dtoCustomerIU);
+    public RestRootEntity<DtoCustomer> addCustomer(DtoCustomerIU dtoCustomerIU);
 
 
-    public void deleteCustomer(Long id);
+    public RestRootEntity<Void> deleteCustomer(Long id);
 }

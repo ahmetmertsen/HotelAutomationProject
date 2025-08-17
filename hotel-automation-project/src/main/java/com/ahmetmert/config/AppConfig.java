@@ -15,6 +15,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.ahmetmert.entity.User;
+import com.ahmetmert.exception.BaseException;
+import com.ahmetmert.exception.ErrorMessage;
+import com.ahmetmert.exception.MessageType;
 import com.ahmetmert.repository.UserRepository;
 
 @Configuration
@@ -40,10 +43,10 @@ public class AppConfig {
 			@Override
 			public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 				Optional<User> optional = userRepository.findByUsername(username);
-				if (optional.isPresent()) {
-					return optional.get();
+				if (optional.isEmpty()) {
+					throw new BaseException(new ErrorMessage(MessageType.USERNAME_NOT_FOUND , username));
 				}
-				return null;
+				return optional.get();
 			}
 		};
 	}
